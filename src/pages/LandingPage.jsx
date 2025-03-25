@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './Navbar';
-import './LandingPage.css';
+import Navbar from '../components/Navbar';
+import "../assets/css/LandingPage.css";
 
 const LandingPage = () => {
   return (
@@ -9,7 +9,7 @@ const LandingPage = () => {
 
       <section className="hero">
         <div className="hero-content">
-          <h1>Welcome to StreamMaster</h1>
+          <h1>Welcome to Streamify</h1>
           <p>Your favorite movies and TV shows, all in one place.</p>
           <button>Start Watching</button>
         </div>

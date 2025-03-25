@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";  // Import useNavigate
-import "./Signin.css";
+import './../assets/css/Signin.css'; // Adjust the path as needed
+
 
 const Signin = () => {
   const navigate = useNavigate();  // Initialize useNavigate

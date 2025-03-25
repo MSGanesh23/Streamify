@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Signup.css"; // Use the same CSS as Signin for consistency
+import './../assets/css/Signup.css'; // Use the same CSS as Signin for consistency
 
 const Signup = () => {
     const navigate = useNavigate();
