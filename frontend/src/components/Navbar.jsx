@@ -36,10 +36,15 @@ const Navbar = () => {
         <input type="text" placeholder="Search..." />
       </div>
 
-      {/* Right Side: User Profile Logo */}
-      <div className="profile-logo">
-        <img src="/path/to/profile-logo.png" alt="Profile" />
-      </div>
+     {/* Right Side: User Profile Logo */}
+<div className="profile-logo">
+  <img
+    src="../images/profile.png" // Update this path based on your actual image location
+    alt="User Profile"
+    className="profile-image"
+  />
+</div>
+
     </nav>
   );
 };
