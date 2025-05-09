@@ -20,16 +20,23 @@ public class LoginController {
     @Autowired
     private org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         User user = loginService.validateUser(loginRequest.getEmail(), loginRequest.getPassword());
 
+        String token = jwtUtil.generateToken(user.getEmail(), user.getRole());
+
         Map<String, Object> response = new HashMap<>();
+        response.put("token", token);
         response.put("email", user.getEmail());
         response.put("role", user.getRole());
 
         return ResponseEntity.ok(response);
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
@@ -55,5 +62,6 @@ public class LoginController {
 
         return ResponseEntity.ok("Admin added successfully");
     }
+    
 
 }

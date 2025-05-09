@@ -9,34 +9,39 @@ const Signin = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:4570/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+  e.preventDefault();
+  try {
+    const res = await fetch("http://localhost:4570/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-      if (!res.ok) {
-        throw new Error("Login failed");
-      }
-
-      const data = await res.json();
-
-      // Redirect based on role
-      if (data.role === 1) {
-        navigate("/AdminDashboard");
-      } else {
-        navigate("/UserDashboard");
-      }
-
-    } catch (error) {
-      alert("Invalid credentials or error logging in.");
-      console.error(error);
+    if (!res.ok) {
+      throw new Error("Login failed");
     }
-  };
+
+    const data = await res.json();
+
+    // ✅ Store token and email in sessionStorage
+    sessionStorage.setItem('token', data.token);
+    sessionStorage.setItem('email', data.email);
+    sessionStorage.setItem('role', data.role);
+
+    // Redirect based on role
+    if (data.role === 1) {
+      navigate("/AdminDashboard");
+    } else {
+      navigate("/UserDashboard");
+    }
+
+  } catch (error) {
+    alert("Invalid credentials or error logging in.");
+    console.error(error);
+  }
+};
 
   return (
     <div className="container">
