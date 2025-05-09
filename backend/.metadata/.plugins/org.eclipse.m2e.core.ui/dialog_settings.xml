@@ -66,8 +66,8 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-			<item value="/home/msganesh/Documents/FSAD/Streamify/backend"/>
 			<item value="/home/msganesh/Documents/FSAD/Streamify/backend/Rolebased"/>
+			<item value="/home/msganesh/Documents/FSAD/Streamify/backend"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
