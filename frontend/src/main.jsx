@@ -13,9 +13,9 @@ import DetailsPage from './pages/DetailsPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* This is for Player Testing Purpose */}
-    {/* <MoviePlayer fileId="1RkMo4lluZbyRegO-sgASy_Idwt7Gf2q8" onBack={() => navigate(-1)} /> */} 
+     {/* <MoviePlayer fileId="1RkMo4lluZbyRegO-sgASy_Idwt7Gf2q8" onBack={() => navigate(-1)} />   */}
     
-    <App />
+    <App /> 
   </StrictMode>,
 )
 

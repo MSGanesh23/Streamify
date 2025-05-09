@@ -43,5 +43,17 @@ public class LoginController {
 
         return ResponseEntity.ok("User registered successfully");
     }
+    @PostMapping("/AddAdmin")
+    public ResponseEntity<?> addAdmin(@RequestBody User user) {
+        if (loginRepo.existsByEmail(user.getEmail())) {
+            return ResponseEntity.badRequest().body("Email already exists");
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(1); // role = 1 for admin
+        loginRepo.save(user);
+
+        return ResponseEntity.ok("Admin added successfully");
+    }
 
 }
