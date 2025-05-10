@@ -8,7 +8,9 @@ html, body, #root {
 .LandingPage {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensures full viewport height */
+  min-height: 100vh;
+  overflow-y: auto; /* ✅ enables vertical scrolling */
+
 }
 
 /* Make sure content grows to fill available space */
@@ -16,10 +18,14 @@ html, body, #root {
   flex: 1; /* Allows banner to take available vertical space */
   position: relative;
   width: 100%;
+  min-height: 400px; /* Set a minimum height for the banner */
   text-align: center;
+  flex: 0 0 auto; /* Prevent it from growing too much */
   background-color: black;
   padding: 40px 0;
 }
+
+
 
 /* Pushes footer to the bottom when content is short */
 .footer {
@@ -82,3 +88,5 @@ html, body, #root {
     cursor: pointer;
   }
   
+
+

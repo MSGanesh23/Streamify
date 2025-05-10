@@ -14,7 +14,10 @@ const HeroBanner = ({ bannerImages }) => {
 
     return () => clearInterval(interval);
   }, [bannerImages.length]);
-
+  
+  if (!bannerImages || bannerImages.length === 0 || !bannerImages[currentIndex]) {
+    return null;
+  }
   const { src, title, desc, driveFileId } = bannerImages[currentIndex];
   const prevIndex = (currentIndex - 1 + bannerImages.length) % bannerImages.length;
   const nextIndex = (currentIndex + 1) % bannerImages.length;

@@ -7,41 +7,48 @@ const Signin = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);  // For loading state
+  const [errorMessage, setErrorMessage] = useState("");  // For error message
 
   const handleLogin = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await fetch("http://localhost:4570/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    e.preventDefault();
+    setIsLoading(true);  // Show loading indicator
+    setErrorMessage("");  // Clear previous error message
 
-    if (!res.ok) {
-      throw new Error("Login failed");
+    try {
+      const res = await fetch("http://localhost:4570/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Login failed. Please check your credentials.");
+      }
+
+      const data = await res.json();
+
+      // ✅ Store token, email, and role in sessionStorage
+      sessionStorage.setItem('token', data.token);
+      sessionStorage.setItem('email', data.email);
+      sessionStorage.setItem('role', data.role);
+
+      // Redirect based on role
+      if (data.role === 1) {
+        navigate("/admin/addVideo");  // Default to the 'addVideo' section
+      } else {
+        navigate("/UserDashboard");
+      }
+
+    } catch (error) {
+      setErrorMessage(error.message);  // Display error message
+      console.error(error);
+    } finally {
+      setIsLoading(false);  // Hide loading indicator
     }
-
-    const data = await res.json();
-
-    // ✅ Store token and email in sessionStorage
-    sessionStorage.setItem('token', data.token);
-    sessionStorage.setItem('email', data.email);
-    sessionStorage.setItem('role', data.role);
-
-    // Redirect based on role
-    if (data.role === 1) {
-      navigate("/AdminDashboard");
-    } else {
-      navigate("/UserDashboard");
-    }
-
-  } catch (error) {
-    alert("Invalid credentials or error logging in.");
-    console.error(error);
-  }
-};
+  };
 
   return (
     <div className="container">
@@ -62,8 +69,13 @@ const Signin = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Sign In</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Signing In..." : "Sign In"}
+          </button>
         </form>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}  {/* Display error message */}
+
         <div className="links">
           <a href="#">Forgot password?</a> <br />
           <span className="link" onClick={() => navigate("/Signup")}>Sign Up</span>

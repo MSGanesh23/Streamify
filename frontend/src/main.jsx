@@ -6,7 +6,7 @@ import Homepage from './pages/Homepage.jsx'
 import Navbar from './components/Navbar.jsx'
 import SignIn from './components/Signin.jsx'
 import MovieCard from './components/MovieCard.jsx'
-import MoviePlayer from './components/MoviePlayer.jsx'
+
 import LandingPage from './pages/LandingPage.jsx'
 import DetailsPage from './pages/DetailsPage.jsx'
 

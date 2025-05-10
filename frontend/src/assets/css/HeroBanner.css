@@ -142,27 +142,7 @@
       padding: 30px 10px;
       flex-direction: column;
     }
-  
-    .carousel-image {
-      width: 90vw; /* Responsive width */
-      height: auto; /* Maintain aspect ratio */
-      margin: 0 auto;
-      position: relative;
-      z-index: 3;
-    }
-      @media (max-width: 768px) {
-        .carousel-banner {
-          padding: 30px 10px;
-          flex-direction: column;
-        }
       
-        .carousel-image {
-          width: 90vw; /* Responsive width */
-          height: auto; /* Maintain aspect ratio */
-          margin: 0 auto;
-          position: relative;
-          z-index: 3;
-        }
       
         .shadow-image {
           display: none; /* Hide shadow images on smaller screens */
@@ -218,4 +198,4 @@
           font-size: 1.8rem;
         }
       }
-    }
+    

@@ -1,7 +1,7 @@
 // src/Navbar.jsx
 import React, { useState } from 'react';
 import './../assets/css/Navbar.css';
-
+import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -9,6 +9,21 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
   };
+
+  
+
+const navigate = useNavigate();
+
+const handleLogout = () => {
+  // Clear any authentication info (e.g., localStorage, cookies)
+  localStorage.removeItem('authToken'); // or whatever key you're using
+  sessionStorage.clear();
+
+  // Optional: reset user state if using context
+
+  // Redirect to login or landing page
+  navigate('/');
+};
 
   const toggleProfileMenu = () => {
     setIsProfileMenuOpen(prevState => !prevState);
@@ -55,7 +70,10 @@ const Navbar = () => {
         <div className="profile-menu">
           <ul>
             <li><a href="/my-profile">My Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li>
+            <button onClick={handleLogout} className="logout-button">Logout</button>
+           </li>
+
           </ul>
         </div>
       )}
