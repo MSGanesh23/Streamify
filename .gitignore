@@ -9,7 +9,7 @@ dist/
 
 # Log files
 *.log
-
+.metadata/
 # Dependency directories (if using Yarn or pnpm)
 .yarn/
 .pnpm/
