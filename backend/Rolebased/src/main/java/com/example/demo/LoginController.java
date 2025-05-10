@@ -3,10 +3,10 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.HashMap;
-import java.util.Map;
 
-@CrossOrigin(origins = "*") // Add this for CORS
+import java.util.*;
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class LoginController {
@@ -26,7 +26,6 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         User user = loginService.validateUser(loginRequest.getEmail(), loginRequest.getPassword());
-
         String token = jwtUtil.generateToken(user.getEmail(), user.getRole());
 
         Map<String, Object> response = new HashMap<>();
@@ -37,31 +36,49 @@ public class LoginController {
         return ResponseEntity.ok(response);
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
         if (loginRepo.existsByEmail(user.getEmail())) {
             return ResponseEntity.badRequest().body("Email already exists");
         }
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(0); // force user role
+        user.setRole(0);
         loginRepo.save(user);
-
         return ResponseEntity.ok("User registered successfully");
     }
+
     @PostMapping("/AddAdmin")
     public ResponseEntity<?> addAdmin(@RequestBody User user) {
         if (loginRepo.existsByEmail(user.getEmail())) {
             return ResponseEntity.badRequest().body("Email already exists");
         }
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(1); // role = 1 for admin
+        user.setRole(1);
         loginRepo.save(user);
-
         return ResponseEntity.ok("Admin added successfully");
     }
-    
 
+    @GetMapping("/users/search")
+    public ResponseEntity<?> getUsersByEmail(@RequestParam(required = false) String email) {
+        List<User> users;
+        if (email != null && !email.trim().isEmpty()) {
+            users = loginRepo.findByEmailStartingWithIgnoreCase(email.trim());
+        } else {
+            users = loginRepo.findAll();
+        }
+        return ResponseEntity.ok(users);
+    }
+
+    @CrossOrigin(origins = "http://localhost:5173")
+    @DeleteMapping("/users/delete/{email}")
+    public ResponseEntity<?> deleteUser(@PathVariable String email) {
+        Optional<User> user = loginRepo.findByEmail(email);
+        
+        if (user.isEmpty()) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+        
+        loginRepo.delete(user.get());
+        return ResponseEntity.ok("User deleted successfully");
+    }
 }
