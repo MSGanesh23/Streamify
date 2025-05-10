@@ -18,50 +18,28 @@
   cursor: pointer;
 }
 
-/* Left nav area for dropdown */
+/* Left nav area for admin buttons */
 .nav-left {
   flex: 1;
+  display: flex;
+  gap: 15px;
 }
 
-/* Dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-toggle {
-  font-weight: bold;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 4px;
-  transition: background 0.3s ease;
-}
-
-.dropdown-toggle:hover {
-  background-color: #222;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  background-color: #1f1f1f;
-  border: 1px solid #333;
-  border-radius: 4px;
-  min-width: 160px;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-.dropdown-menu li {
-  padding: 10px 15px;
-  cursor: pointer;
+/* Admin nav buttons */
+.nav-button {
+  background-color: transparent;
   color: white;
-  transition: background 0.2s;
+  border: 1px solid #444;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dropdown-menu li:hover {
+.nav-button:hover {
   background-color: #333;
+  color: #fff;
 }
 
 /* Right side user info */

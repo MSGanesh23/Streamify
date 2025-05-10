@@ -20,16 +20,18 @@ const App = () => {
         <Route path="/signup" element={<Signup />} /> {/* Add Signup Route */}
 
         {/* Admin Dashboard with dynamic section path */}
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
         
         {/* UserDashboard route - make sure it's correct if this needs to be a separate page */}
         <Route path="/userDashboard" element={<LandingPage />} />
 
         {/* Additional admin related routes */}
-        <Route path="admin/addAdmin" element={<AddAdmin />} />
-        <Route path="/usersList" element={<UserManager />} />
+       
+        
         <Route path="/watch/:fileId" element={<WatchPage />} />
-        <Route path="/admin/addVideo" element={<AdminAddVideo />} />
+        <Route path="/AddVideo" element={<AdminAddVideo />} />
+        <Route path="/AddAdmin" element={<AddAdmin/>}/>
+        <Route path="/UsersList" element={<UserManager />} />
 
         {/* You can add a specific route for DetailsPage if necessary */}
         <Route path="/details/:id" element={<DetailsPage />} />
