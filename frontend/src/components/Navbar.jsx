@@ -4,17 +4,22 @@ import './../assets/css/Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
   };
 
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpen(prevState => !prevState);
+  };
+
   return (
     <nav className="navbar">
       {/* Left Side: Site Name */}
-      <div className="site-name">
-        <h1>Streamify</h1>
-      </div>
+      <h1 className="site-name">
+        Streamify
+      </h1>
 
       {/* Center: Menu Items (For Desktop and Mobile) */}
       <div className={`menu-container ${isMenuOpen ? 'open' : ''}`}>
@@ -36,15 +41,24 @@ const Navbar = () => {
         <input type="text" placeholder="Search..." />
       </div>
 
-     {/* Right Side: User Profile Logo */}
-<div className="profile-logo">
-  <img
-    src="../images/profile.png" // Update this path based on your actual image location
-    alt="User Profile"
-    className="profile-image"
-  />
-</div>
+      {/* Right Side: User Profile Logo */}
+      <div className="profile-logo" onClick={toggleProfileMenu}>
+        <img
+          src="../images/profile.png" // Update this path based on your actual image location
+          alt="User  Profile"
+          className="profile-image"
+        />
+      </div>
 
+      {/* Profile Menu */}
+      {isProfileMenuOpen && (
+        <div className="profile-menu">
+          <ul>
+            <li><a href="/my-profile">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

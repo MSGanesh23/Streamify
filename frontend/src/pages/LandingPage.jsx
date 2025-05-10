@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+// src/pages/LandingPage.jsx
+import React from 'react';
 import Navbar from '../components/Navbar';
+import HeroBanner from '../components/HeroBanner'; // Import the new HeroBanner component
 import "../assets/css/LandingPage.css";
-import { useNavigate } from 'react-router-dom';
 
 const bannerImages = [
   {
@@ -31,32 +32,10 @@ const bannerImages = [
 ];
 
 const LandingPage = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate(); // ✅ Now it's defined
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % bannerImages.length);
-    }, 10000); // 10 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const { src, title, desc, driveFileId } = bannerImages[currentIndex];
-
   return (
     <div className="LandingPage">
       <Navbar />
-
-      <section className="carousel-banner">
-        <img src={src} alt={title} className="carousel-image" />
-        <div className="carousel-overlay">
-          <h1>{title}</h1>
-          <p>{desc}</p>
-          <button onClick={() => navigate(`/watch/${driveFileId}`)}>Watch Now</button>
-        </div>
-      </section>
-
+      <HeroBanner bannerImages={bannerImages} /> {/* Use the HeroBanner component */}
       <footer className="footer">
         <p>© 2025 Streamify. All rights reserved.</p>
       </footer>
