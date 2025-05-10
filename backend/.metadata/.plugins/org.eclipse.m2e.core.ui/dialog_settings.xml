@@ -66,6 +66,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\kinne\Documents\FSAD PROJECT\Streamify\backend"/>
 			<item value="/home/msganesh/Documents/FSAD/Streamify/backend"/>
 			<item value="/home/msganesh/Documents/FSAD/Streamify/backend/Rolebased"/>
 		</list>

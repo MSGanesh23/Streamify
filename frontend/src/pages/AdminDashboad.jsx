@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./../assets/css/AdminDashboard.css";
+import AdminNavbar from '../components/AdminNavbar'; // import the navbar
+import './../assets/css/AdminDashboard.css';
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -11,43 +12,17 @@ export default function AdminDashboard() {
     if (storedEmail) {
       setEmail(storedEmail);
     } else {
-      navigate('/'); // redirect if not logged in
+      navigate('/');
     }
   }, [navigate]);
 
-  const handleLogout = () => {
-    sessionStorage.clear();
-    navigate('/');
-  };
-
   return (
     <div>
-      {/* Navbar */}
-      <nav className="navbar">
-        <h2 className="logo">Streamify Admin</h2>
+      <AdminNavbar email={email} /> {/* use the new navbar component */}
 
-        <div className="nav-right">
-          <ul className="nav-links">
-            <li onClick={() => navigate('/AddAdmin')}>Add Admin</li>
-          </ul>
-          <div className="user-info">
-            <img
-              src="/images/profile.png" // You can replace this with a real image path or URL
-              alt="User Avatar"
-              className="user-avatar"
-            />
-            <span className="user-email">{email}</span>
-            <button className="logout-button" onClick={handleLogout}>
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Dashboard Content */}
       <div className="dashboard-content">
         <h3>Welcome to the Admin Dashboard</h3>
-        {/* Add widgets here */}
+        {/* Add more widgets or content here */}
       </div>
     </div>
   );

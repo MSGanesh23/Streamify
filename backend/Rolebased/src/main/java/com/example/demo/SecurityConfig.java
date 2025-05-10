@@ -17,17 +17,18 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // Use BCryptPasswordEncoder in production!
+        return NoOpPasswordEncoder.getInstance(); // Use BCrypt in real apps
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/login", "/api/register", "/api/AddAdmin").permitAll()
+                .requestMatchers("/api/login", "/api/register", "/api/AddAdmin", "/api/users/search").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }
