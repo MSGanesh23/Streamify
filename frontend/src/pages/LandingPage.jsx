@@ -3,13 +3,14 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroBanner from '../components/HeroBanner'; // Import the new HeroBanner component
 import "../assets/css/LandingPage.css";
+import Footer from '../components/Footer';
 
 const bannerImages = [
   {
-    src: "/images/thumbnails/bahubali.jpg",
-    title: "Bahubali",
-    desc: "Description of Bahubali",
-    driveFileId: "1xxxxxx" // 🔁 Replace with actual Google Drive File ID
+    src: "/images/thumbnails/12thfail.jpg",
+    title: "12th fail",
+    desc: "Description of 12th fail",
+    driveFileId: "1QxvQcZ8TTJR7LVRQGdn8VtmaqZjBu03d" // 🔁 Replace with actual Google Drive File ID
   },
   {
     src: "/images/thumbnails/guntur_karam.jpg",
@@ -36,9 +37,7 @@ const LandingPage = () => {
     <div className="LandingPage">
       <Navbar />
       <HeroBanner bannerImages={bannerImages} /> {/* Use the HeroBanner component */}
-      <footer className="footer">
-        <p>© 2025 Streamify. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };
