@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import MoviePlayer from '../components/MoviePlayer';
 import Navbar from '../components/Navbar';
+import './../assets/css/WatchPage.css';
 
 const WatchPage = () => {
   const { fileId } = useParams();

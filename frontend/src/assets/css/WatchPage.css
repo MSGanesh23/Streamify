@@ -1,0 +1,55 @@
+/* WatchPage.css */
+
+.WatchPage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(135deg, #cbc9d6 0%, #afacb8 100%);
+    color: white;
+    font-family: 'Russo One', sans-serif;
+  }
+  
+  .player-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Style for back button integrated inside MoviePlayer container */
+  .movie-player-back-button {
+    position: fixed;
+    top: 90px; /* below Navbar */
+    left: 20px;
+    background-color: rgba(162, 157, 186, 0.9);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+    z-index: 1100;
+  }
+  
+  .movie-player-back-button:hover {
+    background-color: #9d95b3;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .player-container {
+      padding: 10px;
+    }
+  
+    .movie-player-back-button {
+      top: 80px;
+      left: 10px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+  }
+  
