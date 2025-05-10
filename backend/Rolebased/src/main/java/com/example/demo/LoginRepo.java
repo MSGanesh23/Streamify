@@ -6,9 +6,6 @@ import java.util.Optional;
 
 public interface LoginRepo extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
-
-    // 🔄 UPDATED: Now matches emails that start with the given string (case-insensitive)
     List<User> findByEmailStartingWithIgnoreCase(String email);
-
     boolean existsByEmail(String email);
 }
