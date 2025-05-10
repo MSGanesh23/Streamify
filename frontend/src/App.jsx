@@ -8,6 +8,8 @@ import DetailsPage from "./pages/DetailsPage";
 import AdminDashboard from "./pages/AdminDashboad";
 import AddAdmin from "./components/AddAdmin";
 import UserManager from "./components/UserManager";
+import WatchPage from './pages/WatchPage'; // ✅ Correct relative path
+
 
 const App = () => {
     return (
@@ -20,6 +22,8 @@ const App = () => {
                 <Route path="/UserDashboard" element={<LandingPage/>}/>
                 <Route path="/AddAdmin" element={<AddAdmin/>}/>
                 <Route path="/UsersList" element={<UserManager />} />
+                <Route path="/watch/:fileId" element={<WatchPage />} />
+
             </Routes>
         </Router>
     );

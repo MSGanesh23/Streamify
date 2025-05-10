@@ -37,3 +37,4 @@ yarn-error.log*
 
 # Optional: If you have any custom config files that shouldn't be tracked
 /config/
+backend/.metadata/
