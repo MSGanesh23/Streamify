@@ -51,23 +51,26 @@ const UserManager = () => {
 
   // Handle delete request for a user (by email)
   const handleDelete = async (userEmail) => {
-    const confirmDelete = window.confirm(`Are you sure you want to delete ${userEmail}?`);
-    if (!confirmDelete) return; // Abort if not confirmed
+  const confirmDelete = window.confirm(`Are you sure you want to delete ${userEmail}?`);
+  if (!confirmDelete) return;
 
-    try {
-      setDeletingEmail(userEmail); // Set the email of the user being deleted
-      await axios.delete(`http://localhost:4570/api/users/delete/${userEmail}`); // Send DELETE request to backend
-      alert("User deleted successfully");
+  try {
+    setDeletingEmail(userEmail);
+    await axios.delete("http://localhost:4570/api/users/delete", {
+      params: { email: userEmail }, // Pass email as a request param
+    });
+    alert("User deleted successfully");
 
-      // Update UI by removing the user from the list without refetching everything
-      setUsers(prevUsers => prevUsers.filter(user => user.email !== userEmail));
-    } catch (error) {
-      alert("Failed to delete user");
-      console.error(error);
-    } finally {
-      setDeletingEmail(null); // Reset deleting state
-    }
-  };
+    // Re-fetch users based on current search filter
+    fetchUsers(searchEmail);
+  } catch (error) {
+    alert("Failed to delete user");
+    console.error(error);
+  } finally {
+    setDeletingEmail(null);
+  }
+};
+
 
   return (
     <div>
