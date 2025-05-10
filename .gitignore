@@ -3,13 +3,14 @@ node_modules/
 
 # Build output
 dist/
+.metadata/
 
 # Vite cache
 .vite/
 
 # Log files
 *.log
-
+.metadata/
 # Dependency directories (if using Yarn or pnpm)
 .yarn/
 .pnpm/

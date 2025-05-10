@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from '../components/AdminNavbar';
 import axios from "axios";
-import "../assets/css/AdminDashboard.css"; // Optional: Reuse dashboard styles
+import "../assets/css/AddAdmin.css"; // Optional: Reuse dashboard styles
 
 const AddAdmin = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const AddAdmin = () => {
     <>
       <AdminNavbar email={loggedInEmail} />
       <div className="form-container">
-        <h2>Add New Admin</h2>
+        <h2>Add Admin</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="email"
