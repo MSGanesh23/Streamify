@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class LoginController {
@@ -69,16 +68,17 @@ public class LoginController {
         return ResponseEntity.ok(users);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
-    @DeleteMapping("/users/delete/{email}")
-    public ResponseEntity<?> deleteUser(@PathVariable String email) {
+    @CrossOrigin(origins = "*") // Allow all origins (for testing)
+    @DeleteMapping("/users/delete")
+    public ResponseEntity<?> deleteUser(@RequestParam String email) {
         Optional<User> user = loginRepo.findByEmail(email);
-        
+
         if (user.isEmpty()) {
             return ResponseEntity.status(404).body("User not found");
         }
-        
+
         loginRepo.delete(user.get());
         return ResponseEntity.ok("User deleted successfully");
     }
+
 }

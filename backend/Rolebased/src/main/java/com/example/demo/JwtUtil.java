@@ -9,8 +9,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-
-    private final String SECRET = "my_super_secret_which_should_be_very_long_12345"; // Use env vars in prod
+    private final String SECRET = "my_super_secret_which_should_be_very_long_12345";
     private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
 
     private Key getKey() {
