@@ -10,28 +10,43 @@ const Signup = () => {
     const [error, setError] = useState("");
 
     const handleRegister = async () => {
-        if (password !== confirmPassword) {
-            setError("Passwords do not match");
-            return;
-        }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z.-]+\.(com|in|org|net)$/i;
 
-        try {
-            const response = await fetch("http://localhost:4570/api/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password, role: 0 }),
-            });
+    if (!emailRegex.test(email)) {
+        setError("Please enter a valid email address.");
+        return;
+    }
 
-            if (response.ok) {
-                navigate("/signin");
-            } else {
-                const data = await response.text();
-                setError(data);
-            }
-        } catch (err) {
-            setError("Registration failed. Please try again.");
+    // Extract domain part between @ and .
+    const domainPart = email.substring(email.indexOf('@') + 1, email.lastIndexOf('.'));
+    if (/\d/.test(domainPart)) {
+        setError("Email domain must not contain numbers (e.g., user@abc.com is valid, but not user@abc123.com)");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        setError("Passwords do not match");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:4570/api/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password, role: 0 }),
+        });
+
+        if (response.ok) {
+            navigate("/signin");
+        } else {
+            const data = await response.text();
+            setError(data);
         }
-    };
+    } catch (err) {
+        setError("Registration failed. Please try again.");
+    }
+};
+
 
     return (
         <div className="signin-container">
