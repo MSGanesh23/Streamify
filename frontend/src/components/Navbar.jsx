@@ -1,7 +1,7 @@
 // src/Navbar.jsx
 import React, { useState } from 'react';
 import './../assets/css/Navbar.css';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -11,8 +11,15 @@ const Navbar = () => {
   };
 
   
+    const navigate = useNavigate();
+  
+    const redirect = () => {
+      navigate('/payment'); // If you have a route set up for /payment
+    };
+  
+    
 
-const navigate = useNavigate();
+
 
 const handleLogout = () => {
   // Clear any authentication info (e.g., localStorage, cookies)
@@ -72,6 +79,9 @@ const handleLogout = () => {
             <li><a href="/my-profile">My Profile</a></li>
             <li>
             <button onClick={handleLogout} className="logout-button">Logout</button>
+           </li>
+           <li>
+            <button onClick={redirect} className="subscribe">Purchase Subscription</button>
            </li>
 
           </ul>

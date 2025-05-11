@@ -10,6 +10,7 @@ import AddAdmin from "./components/AddAdmin";
 import UserManager from "./components/UserManager";
 import WatchPage from './pages/WatchPage'; // ✅ Correct relative path
 import AdminAddVideo from './components/AdminAddVideo';
+import PaymentPage from "./payment";
 
 const App = () => {
   return (
@@ -32,7 +33,7 @@ const App = () => {
         <Route path="/AddVideo" element={<AdminAddVideo />} />
         <Route path="/AddAdmin" element={<AddAdmin/>}/>
         <Route path="/UsersList" element={<UserManager />} />
-
+        <Route path="/payment" element={<PaymentPage/>}/>
         {/* You can add a specific route for DetailsPage if necessary */}
         <Route path="/details/:id" element={<DetailsPage />} />
       </Routes>
