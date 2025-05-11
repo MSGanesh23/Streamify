@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,5 +83,21 @@ public class LoginController {
         loginRepo.delete(user.get());
         return ResponseEntity.ok("User deleted successfully");
     }
+    
+    @PutMapping("/user/{id}/subscribe")
+    public ResponseEntity<?> updateSubscription(@PathVariable Long id) {
+        Optional<User> userOptional = loginRepo.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setSubscribed(true); // assumes User entity has get/setSubscribed
+            loginRepo.save(user);
+            return ResponseEntity.ok("Subscription updated.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+        }
+    }
+
+    
+
 
 }

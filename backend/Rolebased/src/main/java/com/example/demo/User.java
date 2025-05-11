@@ -17,8 +17,17 @@ public class User {
 
     private String password;
     private Integer role;
+    @Column(nullable = false)
+    private boolean subscribed = false;
 
-    public Long getId() { return id; }
+
+    public boolean isSubscribed() {
+		return subscribed;
+	}
+	public void setSubscribed(boolean subscribed) {
+		this.subscribed = subscribed;
+	}
+	public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
     public String getEmail() { return email; }

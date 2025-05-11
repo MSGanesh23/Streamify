@@ -47,8 +47,8 @@ const handleLogout = () => {
       <div className={`menu-container ${isMenuOpen ? 'open' : ''}`}>
         <ul className="menu">
           <li><a href="/">Home</a></li>
-          <li><a href="/web-series">Web Series</a></li>
-          <li><a href="/movies">Movies</a></li>
+         
+          
           <li><a href="/recently-added">Recently Added</a></li>
           <li><a href="/my-list">My List</a></li>
         </ul>
