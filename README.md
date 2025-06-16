@@ -99,4 +99,4 @@ cd backend
 
 - [Ganesh](https://github.com/MSGanesh23)  
 - [Balaji](https://github.com/KvnBalaji45)  
-- [Charan](https://github.com/charan_username)
+- [Charan](https://github.com/BeesuCharanSai)
