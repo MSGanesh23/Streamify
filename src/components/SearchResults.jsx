@@ -51,7 +51,7 @@ const SearchResults = ({ results }) => {
                 <div className="movie-info">
                   <h5 className="movie-title">{movie.title}</h5>
                   <div className="actions">
-                    <Link to={`/watch/${movie.driveFileId}`} className="watch-btn">
+                    <Link to={`/watch?url=${encodeURIComponent(movie.videoUrl)}`} className="watch-btn">
                       Watch Now
                     </Link>
                     <button className="add-btn" onClick={() => addToWatchlist(movie.id)}>

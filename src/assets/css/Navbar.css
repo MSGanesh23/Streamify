@@ -1,149 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rouge+Script&display=swap');
 
-/* ================== */
-/* Sidebar Container  */
-/* ================== */
+/* ============================================
+   SIDEBAR NAVBAR – Premium Netflix-Style
+   ============================================ */
+
 .navbar {
   position: fixed;
   top: 12px;
   left: 12px;
   height: calc(100vh - 24px);
   width: 240px;
-  isolation: isolate;
 
+  background: rgba(10, 10, 16, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
-  background: rgba(15, 15, 20, 0.9); /* 🔥 CLEAN FIX */
-  backdrop-filter: blur(12px);
-
-  border-radius: 22px;
-  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 22px 16px;
 
   display: flex;
   flex-direction: column;
-  transition: width 0.3s ease;
+  transition: width 0.28s cubic-bezier(0.4,0,0.2,1);
 
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.45),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    0 24px 48px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 0 0 1px rgba(255,255,255,0.04);
 
-  color: white;
+  color: #fff;
   z-index: 1000;
+  overflow: hidden;
 }
 
-
-
-/* ================== */
-/* Logo / Site Name   */
-/* ================== */
-.site-name {
-  font-size: 42px;
-  font-family: 'Rouge Script', cursive;
-  text-align: center;
-  margin-bottom: 40px;
+/* ── Collapsed state ── */
+.navbar.collapsed {
+  width: 72px;
 }
 
-/* ================== */
-/* Menu Items         */
-/* ================== */
-.menu li a,
-.menu-btn {
+/* ── Toggle button ── */
+.toggle-btn {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: white;
-  text-decoration: none;
-  font-size: 1.05rem;
-  padding: 10px 14px;
-  border-radius: 12px;
-  transition: all 0.25s ease;
-}
-
-.menu{
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.menu li a:hover,
-.menu-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateX(4px);
-}
-
-/* Active route */
-.menu li.active a {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
-}
-
-/* Divider */
-.menu-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 18px 0;
-}
-
-/* Logout */
-.menu-btn.logout {
-  color: #ffb3b3;
-}
-
-.menu-btn.logout:hover {
-  background: rgba(255, 90, 90, 0.2);
-}
-
-/* Collapsed */
-.navbar.collapsed {
-  width: 80px;
-}
-
-/* Toggle */
-.toggle-btn {
-  font-size: 1.4rem;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 1.25rem;
   cursor: pointer;
-  margin-bottom: 15px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.6);
+  transition: all 0.2s ease;
+  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
-/* Logo */
+.toggle-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* ── Logo / Brand ── */
 .site-name {
-  text-align: center;
   font-family: 'Rouge Script', cursive;
-  font-size: 36px;
-  margin-bottom: 30px;
+  font-size: 38px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+
+  /* Gradient logo text */
+  background: linear-gradient(135deg, #fff 30%, #e50914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  filter: drop-shadow(0 0 12px rgba(229,9,20,0.35));
+  transition: all 0.28s ease;
 }
 
-/* Menu */
+.navbar.collapsed .site-name {
+  font-size: 28px;
+}
+
+/* ── Navigation Menu ── */
 .menu {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .menu li a {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  color: white;
+  color: rgba(255,255,255,0.65);
   text-decoration: none;
-  
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  padding: 11px 13px;
+  border-radius: 12px;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 1px solid transparent;
 }
 
 .menu li a:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.08);
+  transform: translateX(3px);
+}
+
+/* Active state */
+.menu li.active a,
+.menu li a.active {
+  background: rgba(229,9,20,0.15);
+  color: #fff;
+  border-color: rgba(229,9,20,0.25);
 }
 
 .menu svg {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  min-width: 20px;
 }
 
-/* Bottom actions */
+/* ── Divider ── */
+.menu-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 12px 0;
+}
+
+/* ── Bottom Actions ── */
 .sidebar-bottom {
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 
 .sidebar-bottom button {
@@ -151,18 +151,39 @@
   align-items: center;
   gap: 12px;
   background: transparent;
-  border: none;
-  color: white;
-  padding: 12px;
+  border: 1px solid transparent;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  padding: 11px 13px;
   border-radius: 12px;
   cursor: pointer;
- 
+  transition: all 0.22s ease;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .sidebar-bottom button:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.08);
+}
+
+.sidebar-bottom button svg {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  min-width: 20px;
+}
+
+/* ── Logout ── */
+.logout {
+  color: rgba(255,150,150,0.75) !important;
 }
 
 .logout:hover {
-  background: rgba(229,9,20,0.35);
+  background: rgba(229,9,20,0.18) !important;
+  border-color: rgba(229,9,20,0.25) !important;
+  color: #ff8080 !important;
 }

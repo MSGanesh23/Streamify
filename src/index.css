@@ -1,8 +1,48 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rouge+Script&display=swap');
+
+*, *::before, *::after {
   margin: 0;
-  min-height: 100vh;
-  background: #0b0b10; ;
-  background-attachment: fixed; /* makes gradient cover all */
-  font-family: 'Poppins', sans-serif;
-  color: white;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+:root {
+  --red:       #e50914;
+  --red-dark:  #b20710;
+  --red-glow:  rgba(229, 9, 20, 0.35);
+  --purple:    #7c3aed;
+  --purple-light: #a78bfa;
+  --bg-base:   #0a0a0f;
+  --bg-card:   #141418;
+  --bg-overlay: rgba(0,0,0,0.75);
+  --glass:     rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.1);
+  --text-primary: #ffffff;
+  --text-muted:   #a0a0b0;
+  --sidebar-w:    260px;
+  --topnav-h:     64px;
+  --radius:       14px;
+  --transition:   0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+/* Utility */
+.hidden { display: none !important; }

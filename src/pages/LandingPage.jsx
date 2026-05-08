@@ -57,7 +57,7 @@ const LandingPage = () => {
           src: m.thumbnailUrl,
           title: m.title,
           desc: m.description,
-          driveFileId: m.driveFileId,
+          videoUrl: m.videoUrl,
         }))}
       />
 

@@ -47,7 +47,7 @@ const MovieSection = ({ title, movies }) => {
               <div className="movie-info">
                 <h5 className="movie-title">{movie.title}</h5>
                 <div className="actions">
-                  <a href={`/watch/${movie.driveFileId}`} className="watch-btn">
+                  <a href={`/watch?url=${encodeURIComponent(movie.videoUrl)}`} className="watch-btn">
                     Watch Now
                   </a>
                   <button

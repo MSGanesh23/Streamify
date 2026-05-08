@@ -18,7 +18,7 @@ const HeroBanner = ({ bannerImages }) => {
   if (!bannerImages || bannerImages.length === 0 || !bannerImages[currentIndex]) {
     return null;
   }
-  const { src, title, desc, driveFileId } = bannerImages[currentIndex];
+  const { src, title, desc, videoUrl } = bannerImages[currentIndex];
   const prevIndex = (currentIndex - 1 + bannerImages.length) % bannerImages.length;
   const nextIndex = (currentIndex + 1) % bannerImages.length;
 
@@ -31,7 +31,7 @@ const HeroBanner = ({ bannerImages }) => {
       <div className="carousel-overlay">
         <h1>{title}</h1>
         <p>{desc}</p>
-        <button onClick={() => navigate(`/watch/${driveFileId}`)}>Watch Now</button>
+        <button onClick={() => navigate(`/watch?url=${encodeURIComponent(videoUrl)}`)}><span>▶</span> Watch Now</button>
       </div>
 
       <button className="arrow left-arrow" onClick={() => setCurrentIndex(prevIndex)}>❮</button>

@@ -31,7 +31,7 @@ const App = () => {
 
             <Route path="/adminDashboard" element={<AdminDashboard />} />
             <Route path="/userDashboard" element={<LandingPage />} />
-            <Route path="/watch/:fileId" element={<WatchPage />} />
+            <Route path="/watch" element={<WatchPage />} />
             <Route path="/AddVideo" element={<AdminAddVideo />} />
             <Route path="/AddAdmin" element={<AddAdmin />} />
             <Route path="/UsersList" element={<UserManager />} />

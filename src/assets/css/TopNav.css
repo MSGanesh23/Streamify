@@ -1,115 +1,166 @@
+/* ============================================
+   TOPNAV – Glassmorphism Premium Top Bar
+   ============================================ */
+
 .topnav {
   position: fixed;
   top: 0;
-  left: 260px; /* match sidebar width */
+  left: 260px;
   right: 0;
-  height: 60px;
+  height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 0 24px;
+  z-index: 900;
+  gap: 16px;
+
+  background: rgba(8,8,14,0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+
+  font-family: 'Inter', sans-serif;
+  transition: left 0.28s ease;
 }
 
-/* Search bar group */
+/* ── Search group ── */
 .group {
   display: flex;
-  line-height: 28px;
   align-items: center;
   position: relative;
-  max-width: 190px;
-  margin-right: 20px;
+  flex: 1;
+  max-width: 360px;
 }
 
 .input {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Inter', sans-serif;
   width: 100%;
-  height: 38px;
-  padding-left: 2.5rem;
-  box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
-  border: 0;
-  border-radius: 12px;
-  background-color: #16171d;
+  height: 40px;
+  padding: 0 16px 0 42px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 0.9rem;
   outline: none;
-  color: #bdbecb;
-  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: text;
-  z-index: 0;
+  transition: all 0.25s ease;
 }
 
 .input::placeholder {
-  color: #bdbecb;
+  color: rgba(255,255,255,0.35);
 }
 
 .input:hover {
-  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
-}
-
-.input:active {
-  transform: scale(0.95);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
 }
 
 .input:focus {
-  box-shadow: 0 0 0 2.5px #2f303d;
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(229,9,20,0.55);
+  box-shadow: 0 0 0 3px rgba(229,9,20,0.12);
 }
 
 .search-icon {
   position: absolute;
-  left: 0.75rem;
-  fill: #bdbecb;
-  width: 1rem;
-  height: 1rem;
+  left: 14px;
+  fill: rgba(255,255,255,0.4);
+  width: 16px;
+  height: 16px;
   pointer-events: none;
-  z-index: 1;
+  transition: fill 0.2s;
 }
 
-/* Profile */
+.input:focus ~ .search-icon,
+.group:focus-within .search-icon {
+  fill: rgba(229,9,20,0.8);
+}
+
+/* ── Profile container ── */
 .profile-container {
   position: relative;
   margin-left: auto;
 }
 
 .profile-image {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   cursor: pointer;
-  border: 2px solid white;
+  border: 2px solid rgba(255,255,255,0.15);
+  object-fit: cover;
+  transition: all 0.22s ease;
 }
 
+.profile-image:hover {
+  border-color: #e50914;
+  box-shadow: 0 0 0 3px rgba(229,9,20,0.2);
+  transform: scale(1.06);
+}
+
+/* ── Dropdown menu ── */
 .profile-menu {
   position: absolute;
-  top: 50px;
+  top: calc(100% + 10px);
   right: 0;
-  background: white;
-  color: black;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 1000;
+  background: rgba(16,16,24,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+  z-index: 1100;
+  min-width: 180px;
+  overflow: hidden;
+  animation: dropDown 0.18s ease both;
+}
+
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .profile-menu ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 6px;
 }
 
 .profile-menu li {
-  padding: 10px 15px;
+  border-radius: 9px;
+  overflow: hidden;
 }
 
-.profile-menu li button,
-.profile-menu li a {
+.profile-menu li a,
+.profile-menu li button {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
   background: none;
   border: none;
   cursor: pointer;
-  color: black;
+  color: rgba(255,255,255,0.75);
   text-decoration: none;
-  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
   text-align: left;
+  transition: all 0.18s ease;
+  border-radius: 9px;
 }
 
-.profile-menu li:hover {
-  background: #f0f0f0;
+.profile-menu li a:hover,
+.profile-menu li button:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.profile-menu li:last-child button {
+  color: rgba(255,100,100,0.85);
+}
+
+.profile-menu li:last-child button:hover {
+  background: rgba(229,9,20,0.15);
+  color: #ff6b6b;
 }

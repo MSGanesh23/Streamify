@@ -1,103 +1,301 @@
-@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Parisienne&display=swap');
 
-body, html {
-    width: 100%;
-    height: 100%;
-    /* overflow: hidden;  */
-}
+/* ============================================
+   HOMEPAGE – Premium Netflix-Style Landing
+   ============================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .homepage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100vh;
-    width: 100vw;
-    background: url('../images/Homepage_image.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    position: relative;
-    padding: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
-.overlay {
-    background: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+/* ── Animated gradient BG ── */
+.homepage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(124,58,237,0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%, rgba(229,9,20,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(10,10,15,0.95) 0%, #0a0a0f 100%);
+  z-index: 0;
+  animation: bgPulse 8s ease-in-out infinite alternate;
 }
 
+@keyframes bgPulse {
+  0%   { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+/* Background image with overlay */
+.homepage-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../images/Homepage_image.jpg') no-repeat center center;
+  background-size: cover;
+  opacity: 0.18;
+  z-index: 0;
+}
+
+/* Noise texture for depth */
+.homepage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Content Layer ── */
+.homepage-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px 24px;
+  gap: 48px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Logo / Brand ── */
+.homepage-brand {
+  text-align: center;
+}
+
+.homepage-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(229,9,20,0.12);
+  border: 1px solid rgba(229,9,20,0.3);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff6b6b;
+  margin-bottom: 20px;
+}
 
 .title {
-    position: relative;
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-    font-family: cursive;
-    color: white;
-    -webkit-text-stroke: 2px violet; 
-    text-shadow: 2px 2px 5px rgba(138, 43, 226, 0.8);
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8ff 40%, #a78bfa 70%, #e50914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  font-family: 'Inter', sans-serif;
 }
 
-
-.content-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 85%;
-    max-width: 1300px;
-    position: relative;
-    height: 55vh;
+.homepage-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: rgba(255,255,255,0.55);
+  font-weight: 400;
+  margin-top: 12px;
+  letter-spacing: 0.02em;
 }
 
-.left-content {
-    font-size: 28px;
-    font-weight: bold;
-    text-align: left;
-    max-width: 40%;
+/* ── Stats Row ── */
+.homepage-stats {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.right-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
-    max-width: 45%;
-    font-weight: bold;
+.stat-item {
+  text-align: center;
+  animation: fadeInUp 0.8s ease both;
 }
 
-.right-content p {
-    font-size: 22px;
-    line-height: 1.4;
+.stat-item:nth-child(1) { animation-delay: 0.1s; }
+.stat-item:nth-child(2) { animation-delay: 0.2s; }
+.stat-item:nth-child(3) { animation-delay: 0.3s; }
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.buttons {
-    margin-top: 15px;
-    display: flex;
-    gap: 15px;
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted, #a0a0b0);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* ── Price + CTA ── */
+.homepage-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
 }
 
-.signin {
-    background-color: blue;
-    color: white;
+.price-badge {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
 }
 
-.signup {
-    background-color: aqua;
-    color: white;
+.price-badge strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 24px rgba(229,9,20,0.45);
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(229,9,20,0.6);
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.02em;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* ── Feature pills ── */
+.homepage-features {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.feature-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+  font-weight: 500;
+}
+
+.feature-pill .pill-icon {
+  font-size: 0.95rem;
+}
+
+/* ── Decorative floating orbs ── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+  animation: orbFloat 6s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%);
+  top: -10%;
+  left: -8%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, transparent 70%);
+  bottom: -5%;
+  right: -5%;
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(167,139,250,0.2) 0%, transparent 70%);
+  top: 40%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(20px, -20px) scale(1.05); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .homepage-stats { gap: 24px; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 280px; justify-content: center; }
 }
