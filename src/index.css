@@ -19,7 +19,8 @@
   --glass-border: rgba(255,255,255,0.1);
   --text-primary: #ffffff;
   --text-muted:   #a0a0b0;
-  --sidebar-w:    260px;
+  --sidebar-expanded: 240px;
+  --sidebar-collapsed: 72px;
   --topnav-h:     64px;
   --radius:       14px;
   --transition:   0.25s cubic-bezier(0.4,0,0.2,1);

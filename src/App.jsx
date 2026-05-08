@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Navbar from "./components/Navbar";   // Left sidebar
-import TopNav from "./components/TopNav";   // Top right nav
+import { SidebarProvider } from "./context/SidebarContext";
 
 import Homepage from "./pages/Homepage";
 import Signin from "./components/Signin";
@@ -20,28 +18,30 @@ import SearchPage from "./pages/SearchPage";
 
 const App = () => {
   return (
-    <Router basename="/">
-      
+    <SidebarProvider>
+      <Router basename="/">
+        <Routes>
+          {/* Public pages – no sidebar */}
+          <Route path="/"        element={<Homepage />} />
+          <Route path="/signin"  element={<Signin />} />
+          <Route path="/signup"  element={<Signup />} />
 
-          {/* PAGE CONTENT */}
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/signup" element={<Signup />} />
+          {/* Admin pages */}
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/AddVideo"       element={<AdminAddVideo />} />
+          <Route path="/AddAdmin"       element={<AddAdmin />} />
+          <Route path="/UsersList"      element={<UserManager />} />
 
-            <Route path="/adminDashboard" element={<AdminDashboard />} />
-            <Route path="/userDashboard" element={<LandingPage />} />
-            <Route path="/watch" element={<WatchPage />} />
-            <Route path="/AddVideo" element={<AdminAddVideo />} />
-            <Route path="/AddAdmin" element={<AddAdmin />} />
-            <Route path="/UsersList" element={<UserManager />} />
-            <Route path="/payment" element={<PaymentPage />} />
-            <Route path="/details/:id" element={<DetailsPage />} />
-            <Route path="/my-list" element={<MyListPage />} />
-            <Route path="/search" element={<SearchPage />} />
-          </Routes>
-        
-    </Router>
+          {/* User pages – sidebar + topnav */}
+          <Route path="/userDashboard" element={<LandingPage />} />
+          <Route path="/watch"         element={<WatchPage />} />
+          <Route path="/payment"       element={<PaymentPage />} />
+          <Route path="/details/:id"   element={<DetailsPage />} />
+          <Route path="/my-list"       element={<MyListPage />} />
+          <Route path="/search"        element={<SearchPage />} />
+        </Routes>
+      </Router>
+    </SidebarProvider>
   );
 };
 

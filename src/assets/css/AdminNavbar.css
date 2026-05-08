@@ -1,62 +1,85 @@
-/* Main Navbar */
+/* ============================================
+   ADMIN NAVBAR – Premium Glassmorphism
+   ============================================ */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #111827; /* dark navy */
-  padding: 12px 24px;
+  background: rgba(10, 10, 16, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 32px;
+  height: 64px;
   color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  font-family: 'Inter', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Keep Streamify title same */
+/* ── Brand ── */
 .navbar .title {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-family: 'Rouge Script', cursive;
+  font-size: 2.2rem;
+  font-weight: 400;
   cursor: pointer;
+  background: linear-gradient(135deg, #fff 30%, #e50914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.35));
+  line-height: 1;
 }
 
-/* Navigation Links */
+/* ── Navigation Links ── */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 28px;
+  gap: 32px;
   margin: 0;
   padding: 0;
 }
 
 .nav-links li {
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
   cursor: pointer;
   position: relative;
   transition: color 0.3s ease;
+  padding: 22px 0; /* Full height for active indicator */
 }
 
-.nav-links li:hover {
-  color: #38bdf8;
+.nav-links li:hover,
+.nav-links li.active {
+  color: #fff;
 }
 
 .nav-links li::after {
   content: "";
   position: absolute;
   width: 0%;
-  height: 2px;
-  bottom: -4px;
+  height: 3px;
+  bottom: 0;
   left: 0;
-  background-color: #38bdf8;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa); /* Purple for Admin */
   transition: width 0.3s ease;
+  border-radius: 3px 3px 0 0;
 }
 
-.nav-links li:hover::after {
+.nav-links li:hover::after,
+.nav-links li.active::after {
   width: 100%;
 }
 
-/* Right side (User info + Logout) */
+/* ── Right side ── */
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 32px;
 }
 
 /* User Info */
@@ -67,32 +90,38 @@
 }
 
 .user-avatar {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 2px solid #38bdf8;
+  border: 2px solid rgba(124, 58, 237, 0.5); /* Purple border */
+  object-fit: cover;
 }
 
-/* ✅ Show full email (no ellipsis) */
 .user-email {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* Logout Button */
-.logout-button {
-  background: #ef4444; /* red */
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: white;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 6px 12px;
+  border-radius: 100px;
+}
+
+/* ── Logout Button ── */
+.logout-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 100, 100, 0.9);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
 }
 
 .logout-button:hover {
-  background: #dc2626;
+  background: rgba(229, 9, 20, 0.15);
+  border-color: rgba(229, 9, 20, 0.3);
+  color: #ff6b6b;
 }

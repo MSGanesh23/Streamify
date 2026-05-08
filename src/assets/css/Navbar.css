@@ -1,41 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rouge+Script&display=swap');
 
-/* ============================================
-   SIDEBAR NAVBAR – Premium Netflix-Style
-   ============================================ */
+/* ================================================
+   SIDEBAR NAVBAR – Clean, Reactive, Premium
+   ================================================ */
+
+/* CSS variables for sidebar widths – consumed by TopNav & page layouts */
+:root {
+  --sidebar-expanded: 240px;
+  --sidebar-collapsed: 72px;
+  --sidebar-current: var(--sidebar-expanded);
+  --topnav-h: 64px;
+}
 
 .navbar {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  height: calc(100vh - 24px);
-  width: 240px;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-expanded);
 
-  background: rgba(10, 10, 16, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 22px 16px;
+  background: #0d0d14;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
 
   display: flex;
   flex-direction: column;
-  transition: width 0.28s cubic-bezier(0.4,0,0.2,1);
+  padding: 20px 12px;
+  gap: 4px;
 
-  box-shadow:
-    0 24px 48px rgba(0,0,0,0.55),
-    inset 0 1px 0 rgba(255,255,255,0.06),
-    0 0 0 1px rgba(255,255,255,0.04);
-
-  color: #fff;
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   overflow: hidden;
+  color: #fff;
+  box-sizing: border-box;
 }
 
 /* ── Collapsed state ── */
 .navbar.collapsed {
-  width: 72px;
+  width: var(--sidebar-collapsed);
 }
 
 /* ── Toggle button ── */
@@ -43,147 +44,163 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  font-size: 1.25rem;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
   cursor: pointer;
   border-radius: 10px;
-  color: rgba(255,255,255,0.6);
   transition: all 0.2s ease;
-  margin-bottom: 8px;
   flex-shrink: 0;
+  margin-bottom: 4px;
+  padding: 0;
 }
 
 .toggle-btn:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
-/* ── Logo / Brand ── */
-.site-name {
-  font-family: 'Rouge Script', cursive;
-  font-size: 38px;
-  font-weight: 400;
-  text-align: center;
-  margin-bottom: 28px;
-  white-space: nowrap;
+/* ── Brand ── */
+.site-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  margin-bottom: 8px;
   overflow: hidden;
+  flex-shrink: 0;
+}
 
-  /* Gradient logo text */
-  background: linear-gradient(135deg, #fff 30%, #e50914 100%);
+.brand-icon {
+  font-family: 'Rouge Script', cursive;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #fff 20%, #e50914 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-
-  filter: drop-shadow(0 0 12px rgba(229,9,20,0.35));
-  transition: all 0.28s ease;
+  filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.4));
+  line-height: 1;
 }
 
-.navbar.collapsed .site-name {
-  font-size: 28px;
+.brand-full {
+  font-family: 'Rouge Script', cursive;
+  font-size: 1.9rem;
+  background: linear-gradient(135deg, #fff 20%, #e50914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.4));
+  white-space: nowrap;
+  line-height: 1;
 }
 
-/* ── Navigation Menu ── */
+/* ── Divider ── */
+.nav-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 8px 0 12px;
+  flex-shrink: 0;
+}
+
+/* ── Menu ── */
 .menu {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
-.menu li a {
+/* ── Shared nav-link style (used by <a> and <button>) ── */
+.nav-link {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: rgba(255,255,255,0.65);
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
-  padding: 11px 13px;
-  border-radius: 12px;
-  transition: all 0.22s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
   white-space: nowrap;
   overflow: hidden;
-  border: 1px solid transparent;
+  text-align: left;
+  box-sizing: border-box;
 }
 
-.menu li a:hover {
-  background: rgba(255,255,255,0.08);
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.07);
   color: #fff;
-  border-color: rgba(255,255,255,0.08);
-  transform: translateX(3px);
 }
 
-/* Active state */
-.menu li.active a,
-.menu li a.active {
-  background: rgba(229,9,20,0.15);
+.nav-link.active {
+  background: rgba(229, 9, 20, 0.12);
   color: #fff;
-  border-color: rgba(229,9,20,0.25);
+  border-left: 3px solid #e50914;
+  padding-left: 7px; /* compensate for border */
 }
 
-.menu svg {
-  font-size: 1.25rem;
+/* ── Nav icon & label ── */
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
   flex-shrink: 0;
-  min-width: 20px;
+  min-width: 22px;
 }
 
-/* ── Divider ── */
-.menu-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.08);
-  margin: 12px 0;
+.nav-label {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-/* ── Bottom Actions ── */
+/* ── Bottom section ── */
 .sidebar-bottom {
-  margin-top: auto;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-}
-
-.sidebar-bottom button {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: transparent;
-  border: 1px solid transparent;
-  color: rgba(255,255,255,0.55);
-  font-size: 0.95rem;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  padding: 11px 13px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.sidebar-bottom button:hover {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  border-color: rgba(255,255,255,0.08);
-}
-
-.sidebar-bottom button svg {
-  font-size: 1.25rem;
+  gap: 2px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
   flex-shrink: 0;
-  min-width: 20px;
 }
 
-/* ── Logout ── */
-.logout {
-  color: rgba(255,150,150,0.75) !important;
+/* ── Logout variant ── */
+.nav-link.logout {
+  color: rgba(255, 130, 130, 0.75);
 }
 
-.logout:hover {
-  background: rgba(229,9,20,0.18) !important;
-  border-color: rgba(229,9,20,0.25) !important;
-  color: #ff8080 !important;
+.nav-link.logout:hover {
+  background: rgba(229, 9, 20, 0.14);
+  color: #ff8888;
+}
+
+/* ── Tooltip on collapsed (icon only) ── */
+.navbar.collapsed .nav-label {
+  display: none;
+}
+
+.navbar.collapsed .nav-link {
+  justify-content: center;
+  padding: 10px;
+}
+
+.navbar.collapsed .nav-link.active {
+  border-left: none;
+  border-bottom: 2px solid #e50914;
+  padding: 10px;
+}
+
+.navbar.collapsed .site-brand {
+  justify-content: center;
 }

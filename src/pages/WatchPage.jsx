@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSidebar } from '../context/SidebarContext';
 import Navbar from '../components/Navbar';
 import './../assets/css/WatchPage.css';
 
 const WatchPage = () => {
+  const { collapsed } = useSidebar();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const videoRef = useRef(null);
@@ -14,7 +16,7 @@ const WatchPage = () => {
 
   if (!videoUrl) {
     return (
-      <div className="WatchPage">
+      <div className={`WatchPage ${collapsed ? 'collapsed' : ''}`}>
         <Navbar />
         <div className="watch-error-state">
           <div className="error-icon">🎬</div>
@@ -27,7 +29,7 @@ const WatchPage = () => {
   }
 
   return (
-    <div className="WatchPage">
+    <div className={`WatchPage ${collapsed ? 'collapsed' : ''}`}>
       <Navbar />
       <div className="player-container">
         <div className="player-header">

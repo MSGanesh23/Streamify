@@ -16,9 +16,14 @@
   display: flex;
   flex-direction: column;
   padding: 24px 32px 32px;
-  margin-left: 80px; /* collapsed sidebar width */
+  margin-left: var(--sidebar-expanded);
   box-sizing: border-box;
   min-height: 100vh;
+  transition: margin-left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.WatchPage.collapsed .player-container {
+  margin-left: var(--sidebar-collapsed);
 }
 
 /* ── Header bar ── */
@@ -137,7 +142,12 @@
   gap: 16px;
   text-align: center;
   padding: 40px;
-  margin-left: 80px;
+  margin-left: var(--sidebar-expanded);
+  transition: margin-left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.WatchPage.collapsed .watch-error-state {
+  margin-left: var(--sidebar-collapsed);
 }
 
 .watch-error-state .error-icon { font-size: 4rem; }

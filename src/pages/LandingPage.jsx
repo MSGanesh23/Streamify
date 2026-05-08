@@ -5,11 +5,13 @@ import MovieSection from "../components/MovieSection";
 import Footer from "../components/Footer";
 import "../assets/css/LandingPage.css";
 import TopNav from "../components/TopNav";
+import { useSidebar } from "../context/SidebarContext";
 
 // Importing Backend API from .env
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const LandingPage = () => {
+  const { collapsed } = useSidebar();
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,7 +41,7 @@ const LandingPage = () => {
   });
 
   return (
-    <div className="LandingPage">
+    <div className={`LandingPage ${collapsed ? "collapsed" : ""}`}>
       {/* Pass search + genre handlers to Navbar */}
 
       

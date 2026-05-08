@@ -5,162 +5,221 @@
 .topnav {
   position: fixed;
   top: 0;
-  left: 260px;
+  left: var(--sidebar-expanded);
   right: 0;
-  height: 64px;
+  height: var(--topnav-h);
   display: flex;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 32px;
   z-index: 900;
-  gap: 16px;
+  gap: 24px;
 
-  background: rgba(8,8,14,0.72);
+  background: rgba(8, 8, 14, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 
   font-family: 'Inter', sans-serif;
-  transition: left 0.28s ease;
+  transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topnav.collapsed {
+  left: var(--sidebar-collapsed);
 }
 
 /* ── Search group ── */
-.group {
+.search-group {
   display: flex;
   align-items: center;
   position: relative;
   flex: 1;
-  max-width: 360px;
+  max-width: 420px;
 }
 
-.input {
+.search-input {
   font-family: 'Inter', sans-serif;
   width: 100%;
-  height: 40px;
-  padding: 0 16px 0 42px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
+  height: 42px;
+  padding: 0 16px 0 46px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   outline: none;
   transition: all 0.25s ease;
 }
 
-.input::placeholder {
-  color: rgba(255,255,255,0.35);
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
 }
 
-.input:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.15);
+.search-input:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-.input:focus {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(229,9,20,0.55);
-  box-shadow: 0 0 0 3px rgba(229,9,20,0.12);
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(229, 9, 20, 0.55);
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.12);
 }
 
 .search-icon {
   position: absolute;
-  left: 14px;
-  fill: rgba(255,255,255,0.4);
-  width: 16px;
-  height: 16px;
+  left: 16px;
+  fill: rgba(255, 255, 255, 0.4);
+  width: 18px;
+  height: 18px;
   pointer-events: none;
   transition: fill 0.2s;
 }
 
-.input:focus ~ .search-icon,
-.group:focus-within .search-icon {
-  fill: rgba(229,9,20,0.8);
+.search-input:focus ~ .search-icon,
+.search-group:focus-within .search-icon {
+  fill: rgba(229, 9, 20, 0.8);
+}
+
+/* ── Right side ── */
+.topnav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
 }
 
 /* ── Profile container ── */
 .profile-container {
   position: relative;
-  margin-left: auto;
 }
 
-.profile-image {
-  width: 38px;
-  height: 38px;
+.profile-avatar {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   cursor: pointer;
-  border: 2px solid rgba(255,255,255,0.15);
-  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #2a2a35 0%, #15151e 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.22s ease;
+  font-family: 'Inter', sans-serif;
 }
 
-.profile-image:hover {
+.profile-avatar:hover {
   border-color: #e50914;
-  box-shadow: 0 0 0 3px rgba(229,9,20,0.2);
-  transform: scale(1.06);
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
+  transform: scale(1.05);
 }
 
 /* ── Dropdown menu ── */
 .profile-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 12px);
   right: 0;
-  background: rgba(16,16,24,0.95);
+  background: rgba(16, 16, 24, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
   z-index: 1100;
-  min-width: 180px;
+  min-width: 220px;
   overflow: hidden;
-  animation: dropDown 0.18s ease both;
+  animation: dropDown 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 @keyframes dropDown {
-  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  from { opacity: 0; transform: translateY(-8px) scale(0.95); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.profile-menu-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-menu-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-menu-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.profile-menu-role {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+}
+
+.profile-menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 12px;
 }
 
 .profile-menu ul {
   list-style: none;
   margin: 0;
-  padding: 6px;
+  padding: 8px;
 }
 
 .profile-menu li {
-  border-radius: 9px;
+  border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 2px;
 }
 
-.profile-menu li a,
+.profile-menu li:last-child {
+  margin-bottom: 0;
+}
+
 .profile-menu li button {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
-  padding: 11px 14px;
+  padding: 12px 16px;
   background: none;
   border: none;
   cursor: pointer;
-  color: rgba(255,255,255,0.75);
-  text-decoration: none;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   text-align: left;
-  transition: all 0.18s ease;
-  border-radius: 9px;
+  transition: all 0.2s ease;
+  border-radius: 10px;
 }
 
-.profile-menu li a:hover,
 .profile-menu li button:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
-.profile-menu li:last-child button {
-  color: rgba(255,100,100,0.85);
+.logout-item {
+  color: rgba(255, 100, 100, 0.9) !important;
 }
 
-.profile-menu li:last-child button:hover {
-  background: rgba(229,9,20,0.15);
-  color: #ff6b6b;
+.profile-menu li button.logout-item:hover {
+  background: rgba(229, 9, 20, 0.15) !important;
+  color: #ff6b6b !important;
 }

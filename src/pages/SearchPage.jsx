@@ -4,8 +4,10 @@ import Navbar from "../components/Navbar";
 import SearchResults from "../components/SearchResults";
 // Importing Backend API from .env
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { useSidebar } from "../context/SidebarContext";
 
 const SearchPage = () => {
+  const { collapsed } = useSidebar();
   const [results, setResults] = useState([]);
   const location = useLocation();
 
@@ -32,7 +34,7 @@ const SearchPage = () => {
   }, [query]);
 
   return (
-    <div className="with-sidebar">
+    <div className={`with-sidebar ${collapsed ? "collapsed" : ""}`}>
       <Navbar />
       <div style={{ padding: "20px", color: "#fff" }}>
         <h1>Search results for “{query}”</h1>

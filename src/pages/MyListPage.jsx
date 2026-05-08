@@ -4,8 +4,10 @@ import MovieSection from "../components/MovieSection";
 import Footer from "../components/Footer";
 // Importing Backend API from .env
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { useSidebar } from "../context/SidebarContext";
 
 const MyListPage = () => {
+  const { collapsed } = useSidebar();
   const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const MyListPage = () => {
   }, []);
 
   return (
-    <div className="with-sidebar">
+    <div className={`with-sidebar ${collapsed ? "collapsed" : ""}`}>
       <Navbar />
       <h2 style={{ margin: "20px" }}>My Watchlist</h2>
       <MovieSection title="My List" movies={watchlist} />

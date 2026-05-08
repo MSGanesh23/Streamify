@@ -3,10 +3,8 @@
    ============================================ */
 
 .admin-form {
-  margin-left: 280px;
-  margin-top: 80px;
   padding: 32px;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 64px); /* Assuming AdminNavbar height is ~64px */
   background: #050508;
   font-family: 'Inter', sans-serif;
   color: #fff;
